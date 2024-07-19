@@ -21,6 +21,8 @@ function createPassword() {
     }
 
     passwordBox.value = password;
+    //save password to localStorage 
+    saveData(); 
 }
 
 function copyPassword () { 
@@ -28,4 +30,26 @@ function copyPassword () {
     navigator.clipboard.writeText(passwordBox.value);
 }
 
+// save password to localStorage 
+function saveData() {
+    localStorage.setItem("password", passwordBox.value);
+}
 
+// show password from localStorage
+function showData() {
+    const savedPassword = localStorage.getItem("password");
+    if(savedPassword) {
+        passwordBox.value = savedPassword;
+    }
+}
+
+// call showData when the page loads
+// window.addEventListener("load", showData);
+showData();
+
+// // Optional: Generate a new password when the page loads if there's no saved password
+// window.addEventListener('load', () => {
+//     if (!localStorage.getItem("password")) {
+//         createPassword();
+//     }
+// });
